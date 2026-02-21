@@ -112,6 +112,8 @@ export const mockBusinesses: Business[] = [
     reviews: 124,
     verified: true,
     verificationTier: 'Gold',
+    isClaimed: true,
+    ownerId: 'owner1',
     reviewsList: [
       {
         id: 'r1',
@@ -185,6 +187,7 @@ export const mockBusinesses: Business[] = [
     reviews: 89,
     verified: true,
     verificationTier: 'Gold',
+    isClaimed: false,
     features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
     priceLevel: '$$$'
   },

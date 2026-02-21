@@ -59,6 +59,8 @@ export interface Business {
   reviews: number;
   verified: boolean;
   verificationTier?: 'Silver' | 'Gold' | 'Platinum';
+  isClaimed?: boolean;
+  ownerId?: string;
   reviewsList?: Review[];
   features?: string[];
   priceLevel?: '$' | '$$' | '$$$' | '$$$$';
