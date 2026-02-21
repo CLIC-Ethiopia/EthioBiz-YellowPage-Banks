@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { MapPin, Phone, Mail, Globe, CheckCircle, Star, ArrowLeft, Share2, Heart, CreditCard, Calendar, FileText, Tag, Wifi, Clock, Smartphone, Bookmark, MessageSquare, Settings } from 'lucide-react';
 import { mockBusinesses, mockBanks } from '../data/mockData';
 
@@ -12,6 +13,9 @@ export default function BusinessDetail() {
   if (!business) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <Helmet>
+          <title>Business Not Found - Addis Business Directory</title>
+        </Helmet>
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-900 mb-4">Business Not Found</h2>
           <p className="text-slate-500 mb-8">The business you are looking for does not exist or has been removed.</p>
@@ -60,6 +64,13 @@ export default function BusinessDetail() {
 
   return (
     <div className="bg-slate-50 min-h-screen pb-24 md:pb-20 relative">
+      <Helmet>
+        <title>{business.name} - {business.city} | Addis Business Directory</title>
+        <meta name="description" content={business.description} />
+        <meta property="og:title" content={`${business.name} - ${business.city}`} />
+        <meta property="og:description" content={business.description} />
+        <meta property="og:image" content={business.coverUrl} />
+      </Helmet>
       {/* Hero Header */}
       <div className="relative h-64 md:h-96 bg-slate-900 rounded-b-2xl md:rounded-2xl overflow-hidden mb-8">
         <img 

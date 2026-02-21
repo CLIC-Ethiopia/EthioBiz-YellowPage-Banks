@@ -1,11 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { mockBanks } from '../data/mockData';
 import { Building2, ArrowRight } from 'lucide-react';
 
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto">
+      <Helmet>
+        <title>Addis Business Directory - Find Verified Businesses in Ethiopia</title>
+        <meta name="description" content="Discover verified businesses from top banks in Ethiopia. Find restaurants, hotels, shops, and services in Addis Ababa and beyond." />
+        <meta property="og:title" content="Addis Business Directory" />
+        <meta property="og:description" content="Discover verified businesses from top banks in Ethiopia." />
+      </Helmet>
       <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100 mb-8">
         <h1 className="text-3xl font-bold text-slate-900 mb-4">Welcome to EthioBiz Directory</h1>
         <p className="text-slate-600 text-lg mb-8">
