@@ -78,6 +78,12 @@ export const mockBusinesses: Business[] = [
     bankId: 'cbe',
     logoUrl: 'https://images.unsplash.com/photo-1559525839-b184a4d698c7?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.995, lng: 38.785 },
+    gallery: [
+      'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1511537632536-b7a4896840a4?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p1',
@@ -119,6 +125,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'dashen',
     logoUrl: 'https://images.unsplash.com/photo-1534643960519-11ad79bc19df?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1520006403909-838d6b92c22e?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.030, lng: 38.740 },
+    gallery: [
+      'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p3',
@@ -153,6 +164,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'awash',
     logoUrl: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.015, lng: 38.800 },
+    gallery: [
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -185,6 +201,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'abyssinia',
     logoUrl: 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1523538290024-47b5fd5def70?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.010, lng: 38.760 },
+    gallery: [
+      'https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -217,6 +238,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'zemen',
     logoUrl: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.990, lng: 38.790 },
+    gallery: [
+      'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p4',
@@ -251,6 +277,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'coop',
     logoUrl: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.540, lng: 39.270 },
+    gallery: [
+      'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p5',
@@ -279,6 +310,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'cbe',
     logoUrl: 'https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.980, lng: 38.760 },
+    gallery: [
+      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -311,6 +347,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'cbe',
     logoUrl: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.005, lng: 38.800 },
+    gallery: [
+      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -337,6 +378,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'awash',
     logoUrl: 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.010, lng: 38.740 },
+    gallery: [
+      'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p6',
@@ -364,6 +410,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'awash',
     logoUrl: 'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.995, lng: 38.790 },
+    gallery: [
+      'https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -390,6 +441,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'dashen',
     logoUrl: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.018, lng: 38.752 },
+    gallery: [
+      'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -422,6 +478,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'dashen',
     logoUrl: 'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.970, lng: 38.760 },
+    gallery: [
+      'https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p7',
@@ -456,6 +517,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'abyssinia',
     logoUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.070, lng: 38.480 },
+    gallery: [
+      'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p8',
@@ -483,6 +549,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'zemen',
     logoUrl: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1468817170550-029c95562018?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.995, lng: 38.780 },
+    gallery: [
+      'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1468817170550-029c95562018?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -509,6 +580,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'zemen',
     logoUrl: 'https://images.unsplash.com/photo-1571896349842-6e53ce41e86a?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.750, lng: 38.980 },
+    gallery: [
+      'https://images.unsplash.com/photo-1571896349842-6e53ce41e86a?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -535,6 +611,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'coop',
     logoUrl: 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1511537632536-b7a4896840a4?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.900, lng: 38.750 },
+    gallery: [
+      'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1511537632536-b7a4896840a4?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p9',
@@ -562,6 +643,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'hibret',
     logoUrl: 'https://images.unsplash.com/photo-1556742031-c6961e8560b0?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.020, lng: 38.750 },
+    gallery: [
+      'https://images.unsplash.com/photo-1556742031-c6961e8560b0?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -588,6 +674,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'nib',
     logoUrl: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.000, lng: 38.770 },
+    gallery: [
+      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -614,6 +705,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'wegagen',
     logoUrl: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 9.010, lng: 38.760 },
+    gallery: [
+      'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [],
     services: [
       {
@@ -640,6 +736,11 @@ export const mockBusinesses: Business[] = [
     bankId: 'oromia',
     logoUrl: 'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&q=80&w=200&h=200',
     coverUrl: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=1200&h=400',
+    coordinates: { lat: 8.910, lng: 38.740 },
+    gallery: [
+      'https://images.unsplash.com/photo-1565793298595-6a879b1d9492?auto=format&fit=crop&q=80&w=800&h=600',
+      'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800&h=600'
+    ],
     products: [
       {
         id: 'p10',

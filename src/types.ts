@@ -27,6 +27,10 @@ export interface Business {
   description: string;
   address: string;
   city: string;
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
   phone: string;
   email: string;
   website?: string;
@@ -34,6 +38,7 @@ export interface Business {
   bankId?: string;
   logoUrl: string;
   coverUrl: string;
+  gallery?: string[];
   products: Product[];
   services: Service[];
   rating: number;

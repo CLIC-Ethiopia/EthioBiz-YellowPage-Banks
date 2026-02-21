@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link, useParams } from 'react-router-dom';
-import { Search, MapPin, Filter, Star, CheckCircle, ArrowRight, Plus } from 'lucide-react';
+import { Search, MapPin, Filter, Star, CheckCircle, ArrowRight, Plus, Map as MapIcon, List } from 'lucide-react';
 import { mockBusinesses, mockBanks } from '../data/mockData';
 import { Business } from '../types';
 import AddBusinessModal from '../components/AddBusinessModal';
 import BankLogo from '../components/BankLogo';
+import BusinessMap from '../components/BusinessMap';
 
 export default function BusinessList() {
   const { bankId } = useParams<{ bankId: string }>();
@@ -19,6 +20,7 @@ export default function BusinessList() {
   const [filteredBusinesses, setFilteredBusinesses] = useState<Business[]>([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   const bank = mockBanks.find(b => b.id === bankId);
 
@@ -82,14 +84,30 @@ export default function BusinessList() {
             </div>
           </div>
           
-          <button 
-            onClick={() => setIsAddModalOpen(true)}
-            style={{ backgroundColor: bank.color }}
-            className="text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
-          >
-            <Plus size={20} />
-            <span>Add Business</span>
-          </button>
+          <div className="flex space-x-3">
+            <div className="flex bg-slate-100 p-1 rounded-lg">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded-md transition-all ${viewMode === 'list' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-900'}`}
+              >
+                <List size={20} />
+              </button>
+              <button
+                onClick={() => setViewMode('map')}
+                className={`p-2 rounded-md transition-all ${viewMode === 'map' ? 'bg-white shadow-sm text-slate-900' : 'text-slate-500 hover:text-slate-900'}`}
+              >
+                <MapIcon size={20} />
+              </button>
+            </div>
+            <button 
+              onClick={() => setIsAddModalOpen(true)}
+              style={{ backgroundColor: bank.color }}
+              className="text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all"
+            >
+              <Plus size={20} />
+              <span>Add Business</span>
+            </button>
+          </div>
         </div>
         
         <form onSubmit={handleSearch} className="flex gap-2 max-w-2xl">
@@ -208,115 +226,121 @@ export default function BusinessList() {
 
           {/* Results List */}
           <div className="flex-grow">
-            <div className="mb-6 flex justify-between items-center">
-              <p className="text-slate-600">Showing <span className="font-bold text-slate-900">{filteredBusinesses.length}</span> results</p>
-              
-              <div className="flex items-center space-x-2 text-sm text-slate-500">
-                <span>Sort by:</span>
-                <select className="bg-transparent font-medium text-slate-900 focus:outline-none cursor-pointer">
-                  <option>Recommended</option>
-                  <option>Highest Rated</option>
-                  <option>Most Reviewed</option>
-                </select>
-              </div>
-            </div>
-
-            {filteredBusinesses.length === 0 ? (
-              <div className="bg-white rounded-xl p-12 text-center border border-slate-100 shadow-sm">
-                <div className="bg-slate-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Search className="text-slate-400" size={32} />
+            {viewMode === 'list' ? (
+              <>
+                <div className="mb-6 flex justify-between items-center">
+                  <p className="text-slate-600">Showing <span className="font-bold text-slate-900">{filteredBusinesses.length}</span> results</p>
+                  
+                  <div className="flex items-center space-x-2 text-sm text-slate-500">
+                    <span>Sort by:</span>
+                    <select className="bg-transparent font-medium text-slate-900 focus:outline-none cursor-pointer">
+                      <option>Recommended</option>
+                      <option>Highest Rated</option>
+                      <option>Most Reviewed</option>
+                    </select>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-2">No businesses found</h3>
-                <p className="text-slate-500 max-w-md mx-auto">
-                  We couldn't find any businesses matching your search criteria. Try adjusting your filters or search term.
-                </p>
-                <button 
-                  onClick={() => {
-                    setSearchTerm('');
-                    setSelectedCategory('');
-                    setSelectedCity('');
-                  }}
-                  className="mt-6 text-yellow-600 font-bold hover:text-yellow-700 hover:underline"
-                >
-                  Clear all filters
-                </button>
-              </div>
-            ) : (
-              <div className="space-y-6">
-                {filteredBusinesses.map(business => (
-                  <Link 
-                    to={`/bank/${bankId}/businesses/${business.id}`} 
-                    key={business.id}
-                    className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-100 group"
-                  >
-                    <div className="flex flex-col md:flex-row">
-                      <div className="md:w-64 h-48 md:h-auto relative overflow-hidden bg-slate-200">
-                        <img 
-                          src={business.coverUrl} 
-                          alt={business.name} 
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-900 shadow-sm">
-                          {business.category}
-                        </div>
-                      </div>
-                      
-                      <div className="p-6 flex-grow flex flex-col justify-between">
-                        <div>
-                          <div className="flex justify-between items-start mb-2">
-                            <h3 className="text-xl font-bold text-slate-900 group-hover:text-yellow-600 transition-colors">{business.name}</h3>
-                            {business.verified && (
-                              <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium flex items-center">
-                                <CheckCircle size={12} className="mr-1" />
-                                Verified
-                              </span>
-                            )}
-                          </div>
-                          
-                          <div className="flex items-center space-x-4 mb-4 text-sm">
-                            <div className="flex items-center text-yellow-500 font-bold">
-                              <Star size={16} className="fill-yellow-500 mr-1" />
-                              {business.rating}
-                              <span className="text-slate-400 font-normal ml-1">({business.reviews} reviews)</span>
-                            </div>
-                            <div className="flex items-center text-slate-500">
-                              <MapPin size={16} className="mr-1" />
-                              {business.city}
-                            </div>
-                          </div>
-                          
-                          <p className="text-slate-600 text-sm line-clamp-2 mb-4">{business.description}</p>
-                          
-                          <div className="flex flex-wrap gap-2">
-                            {business.products.slice(0, 2).map(product => (
-                              <span key={product.id} className="bg-slate-50 text-slate-600 text-xs px-2 py-1 rounded border border-slate-100">
-                                {product.name}
-                              </span>
-                            ))}
-                            {business.services.slice(0, 2).map(service => (
-                              <span key={service.id} className="bg-slate-50 text-slate-600 text-xs px-2 py-1 rounded border border-slate-100">
-                                {service.name}
-                              </span>
-                            ))}
-                            {(business.products.length + business.services.length) > 4 && (
-                              <span className="text-slate-400 text-xs px-2 py-1">+{business.products.length + business.services.length - 4} more</span>
-                            )}
-                          </div>
-                        </div>
-                        
-                        <div className="mt-6 pt-4 border-t border-slate-50 flex justify-between items-center">
-                          <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">
-                            Partner: {business.bankAffiliation}
-                          </span>
-                          <span className="text-yellow-600 font-bold text-sm group-hover:translate-x-1 transition-transform flex items-center">
-                            View Details <ArrowRight size={16} className="ml-1" />
-                          </span>
-                        </div>
-                      </div>
+
+                {filteredBusinesses.length === 0 ? (
+                  <div className="bg-white rounded-xl p-12 text-center border border-slate-100 shadow-sm">
+                    <div className="bg-slate-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Search className="text-slate-400" size={32} />
                     </div>
-                  </Link>
-                ))}
-              </div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">No businesses found</h3>
+                    <p className="text-slate-500 max-w-md mx-auto">
+                      We couldn't find any businesses matching your search criteria. Try adjusting your filters or search term.
+                    </p>
+                    <button 
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSelectedCategory('');
+                        setSelectedCity('');
+                      }}
+                      className="mt-6 text-yellow-600 font-bold hover:text-yellow-700 hover:underline"
+                    >
+                      Clear all filters
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-6">
+                    {filteredBusinesses.map(business => (
+                      <Link 
+                        to={`/bank/${bankId}/businesses/${business.id}`} 
+                        key={business.id}
+                        className="block bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-slate-100 group"
+                      >
+                        <div className="flex flex-col md:flex-row">
+                          <div className="md:w-64 h-48 md:h-auto relative overflow-hidden bg-slate-200">
+                            <img 
+                              src={business.coverUrl} 
+                              alt={business.name} 
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs font-bold text-slate-900 shadow-sm">
+                              {business.category}
+                            </div>
+                          </div>
+                          
+                          <div className="p-6 flex-grow flex flex-col justify-between">
+                            <div>
+                              <div className="flex justify-between items-start mb-2">
+                                <h3 className="text-xl font-bold text-slate-900 group-hover:text-yellow-600 transition-colors">{business.name}</h3>
+                                {business.verified && (
+                                  <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-medium flex items-center">
+                                    <CheckCircle size={12} className="mr-1" />
+                                    Verified
+                                  </span>
+                                )}
+                              </div>
+                              
+                              <div className="flex items-center space-x-4 mb-4 text-sm">
+                                <div className="flex items-center text-yellow-500 font-bold">
+                                  <Star size={16} className="fill-yellow-500 mr-1" />
+                                  {business.rating}
+                                  <span className="text-slate-400 font-normal ml-1">({business.reviews} reviews)</span>
+                                </div>
+                                <div className="flex items-center text-slate-500">
+                                  <MapPin size={16} className="mr-1" />
+                                  {business.city}
+                                </div>
+                              </div>
+                              
+                              <p className="text-slate-600 text-sm line-clamp-2 mb-4">{business.description}</p>
+                              
+                              <div className="flex flex-wrap gap-2">
+                                {business.products.slice(0, 2).map(product => (
+                                  <span key={product.id} className="bg-slate-50 text-slate-600 text-xs px-2 py-1 rounded border border-slate-100">
+                                    {product.name}
+                                  </span>
+                                ))}
+                                {business.services.slice(0, 2).map(service => (
+                                  <span key={service.id} className="bg-slate-50 text-slate-600 text-xs px-2 py-1 rounded border border-slate-100">
+                                    {service.name}
+                                  </span>
+                                ))}
+                                {(business.products.length + business.services.length) > 4 && (
+                                  <span className="text-slate-400 text-xs px-2 py-1">+{business.products.length + business.services.length - 4} more</span>
+                                )}
+                              </div>
+                            </div>
+                            
+                            <div className="mt-6 pt-4 border-t border-slate-50 flex justify-between items-center">
+                              <span className="text-xs text-slate-400 font-medium uppercase tracking-wider">
+                                Partner: {business.bankAffiliation}
+                              </span>
+                              <span className="text-yellow-600 font-bold text-sm group-hover:translate-x-1 transition-transform flex items-center">
+                                View Details <ArrowRight size={16} className="ml-1" />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <BusinessMap businesses={filteredBusinesses} bankId={bankId || ''} />
             )}
           </div>
       </div>
