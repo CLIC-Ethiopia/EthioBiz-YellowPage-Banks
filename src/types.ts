@@ -20,6 +20,20 @@ export interface Service {
   priceRange?: string;
 }
 
+export interface Review {
+  id: string;
+  userId: string;
+  userName: string;
+  userAvatar?: string;
+  rating: number;
+  comment: string;
+  date: string;
+  reply?: {
+    text: string;
+    date: string;
+  };
+}
+
 export interface Business {
   id: string;
   name: string;
@@ -44,4 +58,15 @@ export interface Business {
   rating: number;
   reviews: number;
   verified: boolean;
+  verificationTier?: 'Silver' | 'Gold' | 'Platinum';
+  reviewsList?: Review[];
+  features?: string[];
+  priceLevel?: '$' | '$$' | '$$$' | '$$$$';
+  offers?: {
+    id: string;
+    title: string;
+    description: string;
+    discount?: string;
+    expiryDate?: string;
+  }[];
 }

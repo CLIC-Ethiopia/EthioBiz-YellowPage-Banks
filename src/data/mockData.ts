@@ -110,7 +110,41 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.8,
     reviews: 124,
-    verified: true
+    verified: true,
+    verificationTier: 'Gold',
+    reviewsList: [
+      {
+        id: 'r1',
+        userId: 'u1',
+        userName: 'Abebe Bikila',
+        rating: 5,
+        comment: 'Best coffee in town! The Yirgacheffe is a must-try.',
+        date: '2024-02-15',
+        reply: {
+          text: 'Thank you Abebe! We are glad you enjoyed it.',
+          date: '2024-02-16'
+        }
+      },
+      {
+        id: 'r2',
+        userId: 'u2',
+        userName: 'Sarah Jones',
+        rating: 4,
+        comment: 'Great atmosphere and friendly staff.',
+        date: '2024-02-10'
+      }
+    ],
+    features: ['Open Now', 'Pay with Tele Birr', 'Accepts Mobile Money'],
+    priceLevel: '$$',
+    offers: [
+      {
+        id: 'o1',
+        title: '10% Off with CBE Birr',
+        description: 'Get 10% discount when you pay using CBE Birr mobile wallet.',
+        discount: '10%',
+        expiryDate: '2024-12-31'
+      }
+    ]
   },
   {
     id: '2',
@@ -149,7 +183,10 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.5,
     reviews: 89,
-    verified: true
+    verified: true,
+    verificationTier: 'Gold',
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$$'
   },
   {
     id: '3',
@@ -186,7 +223,9 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.2,
     reviews: 45,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$$$'
   },
   {
     id: '4',
@@ -223,7 +262,18 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.9,
     reviews: 210,
-    verified: true
+    verified: true,
+    verificationTier: 'Platinum',
+    features: ['Open Now', 'Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$$',
+    offers: [
+      {
+        id: 'o2',
+        title: 'Free Airport Transfer',
+        description: 'Complimentary airport pickup for bookings over $500.',
+        discount: 'Free'
+      }
+    ]
   },
   {
     id: '5',
@@ -262,7 +312,10 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.6,
     reviews: 32,
-    verified: false
+    verified: false,
+    verificationTier: 'Silver',
+    features: ['Pay with Tele Birr', 'Accepts Mobile Money'],
+    priceLevel: '$$'
   },
   {
     id: '6',
@@ -294,7 +347,9 @@ export const mockBusinesses: Business[] = [
     services: [],
     rating: 4.3,
     reviews: 18,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$'
   },
   // New Businesses
   {
@@ -332,7 +387,9 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.7,
     reviews: 156,
-    verified: true
+    verified: true,
+    features: ['Open Now', 'Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$$'
   },
   {
     id: '8',
@@ -363,7 +420,10 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.1,
     reviews: 340,
-    verified: true
+    verified: true,
+    verificationTier: 'Gold',
+    features: ['Pay with Tele Birr', 'Accepts Mobile Money'],
+    priceLevel: '$$'
   },
   {
     id: '9',
@@ -395,7 +455,9 @@ export const mockBusinesses: Business[] = [
     services: [],
     rating: 4.4,
     reviews: 98,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$'
   },
   {
     id: '10',
@@ -426,7 +488,9 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.0,
     reviews: 215,
-    verified: true
+    verified: true,
+    features: ['Open Now', 'Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$'
   },
   {
     id: '11',
@@ -463,7 +527,33 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.9,
     reviews: 540,
-    verified: true
+    verified: true,
+    verificationTier: 'Platinum',
+    reviewsList: [
+      {
+        id: 'r3',
+        userId: 'u3',
+        userName: 'John Doe',
+        rating: 5,
+        comment: 'Absolutely stunning hotel. The service is impeccable.',
+        date: '2024-01-20',
+        reply: {
+          text: 'Thank you for your kind words, John. We look forward to welcoming you back.',
+          date: '2024-01-21'
+        }
+      }
+    ],
+    features: ['Open Now', 'Pay with Tele Birr', 'Accepts Mobile Money'],
+    priceLevel: '$$$$',
+    offers: [
+      {
+        id: 'o3',
+        title: 'Weekend Getaway',
+        description: 'Special rates for weekend stays with Dashen Bank cards.',
+        discount: '15%',
+        expiryDate: '2024-12-31'
+      }
+    ]
   },
   {
     id: '12',
@@ -502,7 +592,9 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.3,
     reviews: 67,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$$$'
   },
   {
     id: '13',
@@ -534,7 +626,9 @@ export const mockBusinesses: Business[] = [
     services: [],
     rating: 4.1,
     reviews: 42,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$$'
   },
   {
     id: '14',
@@ -565,7 +659,10 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.5,
     reviews: 1200,
-    verified: true
+    verified: true,
+    verificationTier: 'Gold',
+    features: ['Open Now', 'Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$'
   },
   {
     id: '15',
@@ -596,7 +693,19 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.7,
     reviews: 310,
-    verified: true
+    verified: true,
+    verificationTier: 'Platinum',
+    features: ['Open Now', 'Pay with Tele Birr', 'Accepts Mobile Money'],
+    priceLevel: '$$$$',
+    offers: [
+      {
+        id: 'o4',
+        title: 'Spa Day Package',
+        description: '20% off spa treatments for Zemen Bank customers.',
+        discount: '20%',
+        expiryDate: '2024-12-31'
+      }
+    ]
   },
   {
     id: '16',
@@ -628,7 +737,9 @@ export const mockBusinesses: Business[] = [
     services: [],
     rating: 4.6,
     reviews: 56,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$'
   },
   {
     id: '17',
@@ -659,7 +770,9 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.2,
     reviews: 78,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$'
   },
   {
     id: '18',
@@ -690,7 +803,9 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.1,
     reviews: 65,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$'
   },
   {
     id: '19',
@@ -721,7 +836,9 @@ export const mockBusinesses: Business[] = [
     ],
     rating: 4.4,
     reviews: 320,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$'
   },
   {
     id: '20',
@@ -753,6 +870,8 @@ export const mockBusinesses: Business[] = [
     services: [],
     rating: 4.0,
     reviews: 28,
-    verified: true
+    verified: true,
+    features: ['Accepts Mobile Money', 'Pay with Tele Birr'],
+    priceLevel: '$$$'
   }
 ];

@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Globe, CheckCircle, Star, ArrowLeft, Share2, Heart } from 'lucide-react';
-import { mockBusinesses } from '../data/mockData';
+import { MapPin, Phone, Mail, Globe, CheckCircle, Star, ArrowLeft, Share2, Heart, CreditCard, Calendar, FileText, Tag, Wifi, Clock, Smartphone, Bookmark, MessageSquare } from 'lucide-react';
+import { mockBusinesses, mockBanks } from '../data/mockData';
 
 export default function BusinessDetail() {
   const { bankId, id } = useParams<{ bankId: string, id: string }>();
   const business = mockBusinesses.find(b => b.id === id);
+  const bank = mockBanks.find(b => b.id === bankId);
+  const [isSaved, setIsSaved] = useState(false);
 
   if (!business) {
     return (
@@ -21,10 +23,45 @@ export default function BusinessDetail() {
     );
   }
 
+  const getFeatureIcon = (feature: string) => {
+    switch (feature) {
+      case 'Open Now': return <Clock size={16} />;
+      case 'Accepts Mobile Money': return <Smartphone size={16} />;
+      case 'Pay with Tele Birr': return <CreditCard size={16} />;
+      default: return <CheckCircle size={16} />;
+    }
+  };
+
+  const getVerificationBadge = () => {
+    if (!business.verified) return null;
+    
+    let colorClass = "bg-green-900/30 text-green-400";
+    let label = "Verified";
+    let icon = <CheckCircle size={14} className="mr-1" />;
+
+    if (business.verificationTier === 'Gold') {
+      colorClass = "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30";
+      label = "Gold Verified";
+    } else if (business.verificationTier === 'Platinum') {
+      colorClass = "bg-slate-500/30 text-slate-200 border border-slate-400/30";
+      label = "Platinum Partner";
+    } else if (business.verificationTier === 'Silver') {
+      colorClass = "bg-slate-400/20 text-slate-300";
+      label = "Silver Member";
+    }
+
+    return (
+      <span className={`flex items-center text-sm font-medium px-2 py-1 rounded backdrop-blur-sm ${colorClass}`}>
+        {icon}
+        {label}
+      </span>
+    );
+  };
+
   return (
-    <div className="bg-slate-50 min-h-screen pb-20">
+    <div className="bg-slate-50 min-h-screen pb-24 md:pb-20 relative">
       {/* Hero Header */}
-      <div className="relative h-64 md:h-96 bg-slate-900 rounded-2xl overflow-hidden mb-8">
+      <div className="relative h-64 md:h-96 bg-slate-900 rounded-b-2xl md:rounded-2xl overflow-hidden mb-8">
         <img 
           src={business.coverUrl} 
           alt={business.name} 
@@ -54,10 +91,10 @@ export default function BusinessDetail() {
                 <span className="bg-yellow-400 text-slate-900 text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">
                   {business.category}
                 </span>
-                {business.verified && (
-                  <span className="flex items-center text-green-400 text-sm font-medium bg-green-900/30 px-2 py-1 rounded backdrop-blur-sm">
-                    <CheckCircle size={14} className="mr-1" />
-                    Verified
+                {getVerificationBadge()}
+                {business.priceLevel && (
+                  <span className="text-slate-300 font-medium bg-white/10 px-2 py-1 rounded backdrop-blur-sm">
+                    {business.priceLevel}
                   </span>
                 )}
               </div>
@@ -75,15 +112,18 @@ export default function BusinessDetail() {
               </div>
             </div>
 
-            <div className="flex space-x-3 mb-4 md:mb-0">
+            <div className="flex space-x-3 mb-4 md:mb-0 hidden md:flex">
+              <button 
+                onClick={() => setIsSaved(!isSaved)}
+                className={`backdrop-blur-md p-3 rounded-full transition-colors ${isSaved ? 'bg-yellow-400 text-slate-900' : 'bg-white/10 text-white hover:bg-white/20'}`}
+              >
+                <Bookmark size={20} className={isSaved ? "fill-current" : ""} />
+              </button>
               <button className="bg-white/10 backdrop-blur-md text-white p-3 rounded-full hover:bg-white/20 transition-colors">
                 <Share2 size={20} />
               </button>
               <button className="bg-white/10 backdrop-blur-md text-white p-3 rounded-full hover:bg-white/20 transition-colors">
                 <Heart size={20} />
-              </button>
-              <button className="bg-yellow-400 text-slate-900 px-6 py-3 rounded-full font-bold hover:bg-yellow-300 transition-colors shadow-lg">
-                Contact Business
               </button>
             </div>
           </div>
@@ -94,6 +134,47 @@ export default function BusinessDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
+            
+            {/* Features */}
+            {business.features && business.features.length > 0 && (
+              <div className="flex flex-wrap gap-3">
+                {business.features.map((feature, index) => (
+                  <span key={index} className="flex items-center bg-white border border-slate-200 text-slate-700 px-3 py-1.5 rounded-full text-sm font-medium shadow-sm">
+                    <span className="mr-2 text-slate-400">{getFeatureIcon(feature)}</span>
+                    {feature}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Offers Section */}
+            {business.offers && business.offers.length > 0 && (
+              <section className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border border-yellow-100 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-yellow-400 rounded-full opacity-20 blur-xl"></div>
+                <h2 className="text-xl font-bold text-slate-900 mb-4 flex items-center">
+                  <Tag className="mr-2 text-yellow-600" /> Exclusive Offers
+                </h2>
+                <div className="space-y-4 relative z-10">
+                  {business.offers.map(offer => (
+                    <div key={offer.id} className="bg-white p-4 rounded-xl border border-yellow-100 shadow-sm flex items-start justify-between">
+                      <div>
+                        <h3 className="font-bold text-slate-900">{offer.title}</h3>
+                        <p className="text-slate-600 text-sm mt-1">{offer.description}</p>
+                        {offer.expiryDate && (
+                          <p className="text-xs text-slate-400 mt-2">Expires: {offer.expiryDate}</p>
+                        )}
+                      </div>
+                      {offer.discount && (
+                        <span className="bg-yellow-100 text-yellow-800 font-bold px-3 py-1 rounded-lg text-sm">
+                          {offer.discount}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* About Section */}
             <section className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
               <h2 className="text-2xl font-bold text-slate-900 mb-4">About Us</h2>
@@ -157,6 +238,54 @@ export default function BusinessDetail() {
                 </div>
               </section>
             )}
+
+            {/* Reviews Section */}
+            <section className="bg-white rounded-2xl p-8 shadow-sm border border-slate-100">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-slate-900 flex items-center">
+                  <MessageSquare className="mr-2 text-yellow-500" /> Reviews
+                </h2>
+                <button className="text-yellow-600 font-bold text-sm hover:underline">Write a Review</button>
+              </div>
+              
+              {business.reviewsList && business.reviewsList.length > 0 ? (
+                <div className="space-y-6">
+                  {business.reviewsList.map(review => (
+                    <div key={review.id} className="border-b border-slate-100 last:border-0 pb-6 last:pb-0">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center">
+                          <div className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center text-slate-500 font-bold mr-3">
+                            {review.userName.charAt(0)}
+                          </div>
+                          <div>
+                            <h4 className="font-bold text-slate-900">{review.userName}</h4>
+                            <span className="text-xs text-slate-400">{review.date}</span>
+                          </div>
+                        </div>
+                        <div className="flex text-yellow-400">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={14} className={i < review.rating ? "fill-current" : "text-slate-200"} />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-slate-600 mb-3">{review.comment}</p>
+                      
+                      {review.reply && (
+                        <div className="bg-slate-50 p-4 rounded-lg ml-8 border-l-2 border-yellow-400">
+                          <div className="flex items-center justify-between mb-1">
+                            <span className="text-sm font-bold text-slate-900">Response from Owner</span>
+                            <span className="text-xs text-slate-400">{review.reply.date}</span>
+                          </div>
+                          <p className="text-slate-600 text-sm">{review.reply.text}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-slate-500 italic">No reviews yet. Be the first to review!</p>
+              )}
+            </section>
           </div>
 
           {/* Sidebar */}
@@ -229,6 +358,27 @@ export default function BusinessDetail() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Sticky Mobile Action Bar */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 md:hidden z-50 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+        <div className="grid grid-cols-3 gap-2">
+          <button 
+            style={{ backgroundColor: bank?.color || '#000' }}
+            className="col-span-1 text-white py-3 rounded-lg font-bold flex flex-col items-center justify-center text-xs shadow-md active:scale-95 transition-transform"
+          >
+            <CreditCard size={18} className="mb-1" />
+            Pay
+          </button>
+          <button className="col-span-1 bg-slate-100 text-slate-900 py-3 rounded-lg font-bold flex flex-col items-center justify-center text-xs border border-slate-200 active:bg-slate-200 transition-colors">
+            <Calendar size={18} className="mb-1" />
+            Book
+          </button>
+          <button className="col-span-1 bg-slate-100 text-slate-900 py-3 rounded-lg font-bold flex flex-col items-center justify-center text-xs border border-slate-200 active:bg-slate-200 transition-colors">
+            <FileText size={18} className="mb-1" />
+            Quote
+          </button>
         </div>
       </div>
     </div>
