@@ -7,7 +7,8 @@ export default function ClaimBusiness() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const business = mockBusinesses.find(b => b.id === id);
-  const [verificationMethod, setVerificationMethod] = useState<'phone' | 'email' | 'document'>('phone');
+  const [verificationMethod, setVerificationMethod] = useState<'phone' | 'email'>('phone');
+  const [loginMethod, setLoginMethod] = useState<'phone' | 'email'>('phone');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   if (!business) {
@@ -66,7 +67,7 @@ export default function ClaimBusiness() {
               <label className="block text-sm font-bold text-slate-700 mb-4 uppercase tracking-wider">
                 Choose Verification Method
               </label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <button
                   type="button"
                   onClick={() => setVerificationMethod('phone')}
@@ -90,18 +91,6 @@ export default function ClaimBusiness() {
                 >
                   <Mail size={24} className="mb-2" />
                   <span className="font-bold text-sm">Email</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setVerificationMethod('document')}
-                  className={`p-4 rounded-xl border-2 flex flex-col items-center justify-center transition-all ${
-                    verificationMethod === 'document' 
-                      ? 'border-yellow-400 bg-yellow-50 text-yellow-700' 
-                      : 'border-slate-100 hover:border-slate-200 text-slate-500'
-                  }`}
-                >
-                  <Upload size={24} className="mb-2" />
-                  <span className="font-bold text-sm">Upload Doc</span>
                 </button>
               </div>
             </div>
@@ -129,12 +118,69 @@ export default function ClaimBusiness() {
                   </button>
                 </div>
               )}
+            </div>
 
-              {verificationMethod === 'document' && (
-                <div className="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center hover:bg-slate-50 transition-colors cursor-pointer">
-                  <Upload size={32} className="mx-auto text-slate-400 mb-4" />
-                  <p className="text-slate-600 font-medium">Click to upload business license</p>
-                  <p className="text-slate-400 text-sm mt-2">PDF, JPG, or PNG (Max 5MB)</p>
+            {/* Login Section */}
+            <div className="pt-8 border-t border-slate-100">
+              <label className="block text-sm font-bold text-slate-700 mb-4 uppercase tracking-wider">
+                Login to Verify
+              </label>
+              
+              <div className="flex space-x-4 mb-6">
+                <button
+                  type="button"
+                  onClick={() => setLoginMethod('phone')}
+                  className={`pb-2 text-sm font-bold border-b-2 transition-colors ${
+                    loginMethod === 'phone' 
+                      ? 'border-yellow-400 text-slate-900' 
+                      : 'border-transparent text-slate-400 hover:text-slate-600'
+                  }`}
+                >
+                  Phone & PIN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLoginMethod('email')}
+                  className={`pb-2 text-sm font-bold border-b-2 transition-colors ${
+                    loginMethod === 'email' 
+                      ? 'border-yellow-400 text-slate-900' 
+                      : 'border-transparent text-slate-400 hover:text-slate-600'
+                  }`}
+                >
+                  Email & Password
+                </button>
+              </div>
+
+              {loginMethod === 'phone' ? (
+                <div className="space-y-4">
+                  <input 
+                    type="tel" 
+                    placeholder="Phone Number" 
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    required
+                  />
+                  <input 
+                    type="password" 
+                    placeholder="4-digit PIN" 
+                    maxLength={4}
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    required
+                  />
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <input 
+                    type="email" 
+                    placeholder="Email Address" 
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    required
+                  />
+                  <input 
+                    type="password" 
+                    placeholder="Password" 
+                    className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                    required
+                  />
                 </div>
               )}
             </div>

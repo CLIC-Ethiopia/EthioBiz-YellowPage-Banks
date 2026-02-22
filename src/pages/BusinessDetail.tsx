@@ -368,15 +368,9 @@ export default function BusinessDetail() {
                 </div>
 
                 <div className="mt-6 text-center">
-                  {business.isClaimed ? (
-                    <Link to={`/business/${business.id}/dashboard`} className="text-sm font-bold text-slate-400 hover:text-slate-600 flex items-center justify-center">
-                      <Settings size={14} className="mr-1" /> Manage this listing
-                    </Link>
-                  ) : (
-                    <Link to={`/business/${business.id}/claim`} className="text-sm font-bold text-slate-400 hover:text-slate-600 flex items-center justify-center">
-                      <CheckCircle size={14} className="mr-1" /> Own this business? Claim it
-                    </Link>
-                  )}
+                  <Link to={`/business/${business.id}/claim`} className="text-sm font-bold text-slate-400 hover:text-slate-600 flex items-center justify-center">
+                    <CheckCircle size={14} className="mr-1" /> Own this business? Claim it
+                  </Link>
                 </div>
               </div>
             </div>
