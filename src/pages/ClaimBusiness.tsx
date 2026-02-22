@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { mockBusinesses } from '../data/mockData';
 import { CheckCircle, Upload, Phone, Mail, ArrowLeft } from 'lucide-react';
 
@@ -44,13 +44,13 @@ export default function ClaimBusiness() {
   return (
     <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
-        <button 
-          onClick={() => navigate(-1)} 
-          className="flex items-center text-slate-500 hover:text-slate-700 mb-6 transition-colors"
+        <Link 
+          to={`/bank/${business.bankId}/businesses/${id}`}
+          className="flex items-center text-slate-500 hover:text-slate-700 mb-6 transition-colors inline-flex"
         >
           <ArrowLeft size={20} className="mr-2" />
           Back to Business
-        </button>
+        </Link>
 
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100">
           <div className="bg-slate-900 p-6 text-white">

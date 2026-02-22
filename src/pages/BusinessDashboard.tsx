@@ -27,7 +27,7 @@ export default function BusinessDashboard() {
       <header className="bg-slate-900 text-white p-6 sticky top-0 z-50 shadow-md">
         <div className="container mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-4">
-            <Link to={`/business/${id}`} className="text-slate-400 hover:text-white transition-colors">
+            <Link to={`/bank/${business.bankId}/businesses/${id}`} className="text-slate-400 hover:text-white transition-colors">
               <ArrowLeft size={24} />
             </Link>
             <h1 className="text-xl font-bold">{business.name} <span className="text-slate-500 font-normal text-sm ml-2">Dashboard</span></h1>
