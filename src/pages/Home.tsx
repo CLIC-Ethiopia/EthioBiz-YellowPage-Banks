@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { mockBanks } from '../data/mockData';
+import { useData } from '../context/DataContext';
 import { Building2, ArrowRight } from 'lucide-react';
 
 export default function Home() {
+  const { banks } = useData();
+
   return (
     <div className="max-w-7xl mx-auto">
       <Helmet>
@@ -20,7 +22,7 @@ export default function Home() {
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {mockBanks.map(bank => (
+          {banks.map(bank => (
             <Link 
               key={bank.id} 
               to={`/bank/${bank.id}`}

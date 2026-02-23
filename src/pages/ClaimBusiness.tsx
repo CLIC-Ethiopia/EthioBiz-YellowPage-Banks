@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { mockBusinesses } from '../data/mockData';
+import { useData } from '../context/DataContext';
 import { CheckCircle, Upload, Phone, Mail, ArrowLeft } from 'lucide-react';
 
 export default function ClaimBusiness() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const business = mockBusinesses.find(b => b.id === id);
+  const { businesses } = useData();
+  const business = businesses.find(b => b.id === id);
   const [verificationMethod, setVerificationMethod] = useState<'phone' | 'email'>('phone');
   const [loginMethod, setLoginMethod] = useState<'phone' | 'email'>('phone');
   const [isSubmitted, setIsSubmitted] = useState(false);

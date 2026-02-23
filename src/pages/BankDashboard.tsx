@@ -1,13 +1,14 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { mockBanks, mockBusinesses } from '../data/mockData';
+import { useData } from '../context/DataContext';
 import { Building2, Users, ArrowRight, TrendingUp } from 'lucide-react';
 import BankLogo from '../components/BankLogo';
 
 export default function BankDashboard() {
   const { bankId } = useParams<{ bankId: string }>();
-  const bank = mockBanks.find(b => b.id === bankId);
-  const businesses = mockBusinesses.filter(b => b.bankId === bankId);
+  const { businesses: allBusinesses, banks } = useData();
+  const bank = banks.find(b => b.id === bankId);
+  const businesses = allBusinesses.filter(b => b.bankId === bankId);
 
   if (!bank) {
     return <div>Bank not found</div>;

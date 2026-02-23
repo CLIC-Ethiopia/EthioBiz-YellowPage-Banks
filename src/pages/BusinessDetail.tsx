@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { MapPin, Phone, Mail, Globe, CheckCircle, Star, ArrowLeft, Share2, Heart, CreditCard, Calendar, FileText, Tag, Wifi, Clock, Smartphone, Bookmark, MessageSquare, Settings } from 'lucide-react';
-import { mockBusinesses, mockBanks } from '../data/mockData';
+import { useData } from '../context/DataContext';
 
 export default function BusinessDetail() {
   const { bankId, id } = useParams<{ bankId: string, id: string }>();
-  const business = mockBusinesses.find(b => b.id === id);
-  const bank = mockBanks.find(b => b.id === bankId);
+  const { businesses, banks } = useData();
+  const business = businesses.find(b => b.id === id);
+  const bank = banks.find(b => b.id === bankId);
   const [isSaved, setIsSaved] = useState(false);
 
   if (!business) {

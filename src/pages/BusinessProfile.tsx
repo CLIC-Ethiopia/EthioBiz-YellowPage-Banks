@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { mockBusinesses } from '../data/mockData';
+import { useData } from '../context/DataContext';
 import { 
   ArrowLeft, Star, MapPin, Phone, Mail, Globe, 
   Building2, CheckCircle2, Package, Briefcase, ChevronRight 
@@ -8,7 +8,8 @@ import { motion } from 'motion/react';
 
 export default function BusinessProfile() {
   const { id } = useParams<{ id: string }>();
-  const business = mockBusinesses.find(b => b.id === id);
+  const { businesses } = useData();
+  const business = businesses.find(b => b.id === id);
 
   if (!business) {
     return (

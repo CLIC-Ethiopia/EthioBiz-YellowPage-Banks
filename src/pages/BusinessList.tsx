@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link, useParams } from 'react-router-dom';
 import { Search, MapPin, Filter, Star, CheckCircle, ArrowRight, Plus, Map as MapIcon, List } from 'lucide-react';
-import { mockBusinesses, mockBanks } from '../data/mockData';
+import { useData } from '../context/DataContext';
 import { Business } from '../types';
 import AddBusinessModal from '../components/AddBusinessModal';
 import BankLogo from '../components/BankLogo';
@@ -12,17 +12,24 @@ export default function BusinessList() {
   const [searchParams, setSearchParams] = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
   const initialCategory = searchParams.get('category') || '';
+  const { businesses, banks } = useData();
 
   const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [selectedCity, setSelectedCity] = useState('');
-  const [allBusinesses, setAllBusinesses] = useState<Business[]>(mockBusinesses);
+  const [allBusinesses, setAllBusinesses] = useState<Business[]>([]);
   const [filteredBusinesses, setFilteredBusinesses] = useState<Business[]>([]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
-  const bank = mockBanks.find(b => b.id === bankId);
+  const bank = banks.find(b => b.id === bankId);
+
+  useEffect(() => {
+    if (businesses.length > 0) {
+      setAllBusinesses(businesses);
+    }
+  }, [businesses]);
 
   // Filter businesses by bank first
   const bankBusinesses = React.useMemo(() => {

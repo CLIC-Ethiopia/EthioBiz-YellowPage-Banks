@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { Menu, X, Home, Building2, Info, Phone, LayoutDashboard } from 'lucide-react';
-import { mockBanks } from '../data/mockData';
+import { useData } from '../context/DataContext';
 import BankLogo from './BankLogo';
 
 export default function DashboardLayout() {
@@ -9,6 +9,7 @@ export default function DashboardLayout() {
   const { bankId } = useParams<{ bankId: string }>();
   const location = useLocation();
   const mainContentRef = React.useRef<HTMLDivElement>(null);
+  const { banks } = useData();
 
   // Scroll to top when location changes
   React.useEffect(() => {
@@ -18,7 +19,7 @@ export default function DashboardLayout() {
   }, [location.pathname]);
 
   // If we are on the root path, we might not have a bankId, so we show the general view
-  const currentBank = bankId ? mockBanks.find(b => b.id === bankId) : null;
+  const currentBank = bankId ? banks.find(b => b.id === bankId) : null;
 
   // Dynamic styles based on selected bank
   const sidebarStyle = currentBank ? { backgroundColor: currentBank.color } : {};
@@ -48,7 +49,7 @@ export default function DashboardLayout() {
         <div className="p-4 border-b border-white/10">
           <h3 className="text-xs font-bold text-white/50 uppercase tracking-wider mb-2">Select Bank</h3>
           <div className="space-y-1 max-h-64 overflow-y-auto custom-scrollbar">
-            {mockBanks.map(bank => (
+            {banks.map(bank => (
               <Link
                 key={bank.id}
                 to={`/bank/${bank.id}`}

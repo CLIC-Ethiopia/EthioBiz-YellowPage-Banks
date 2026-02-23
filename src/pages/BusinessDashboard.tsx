@@ -1,11 +1,12 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { mockBusinesses } from '../data/mockData';
+import { useData } from '../context/DataContext';
 import { BarChart, Activity, Users, PhoneCall, MessageSquare, Settings, Edit, ArrowLeft } from 'lucide-react';
 
 export default function BusinessDashboard() {
   const { id } = useParams<{ id: string }>();
-  const business = mockBusinesses.find(b => b.id === id);
+  const { businesses } = useData();
+  const business = businesses.find(b => b.id === id);
 
   if (!business) {
     return <div className="p-8 text-center">Business not found</div>;
